@@ -1,0 +1,22 @@
+{
+  "name": "shive-studios",
+  "version": "1.0.0",
+  "description": "App for Shive Studïos, LLC",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "^1.17.2",
+    "co": "^4.6.0",
+    "cors": "^2.8.4",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-jwt": "*"
+  },
+  "author": "Shïve Studios, LLC",
+  "license": "ISC"
+}
