@@ -25,7 +25,7 @@ mongoose.connection.on('error', (err) => {
 const app = express();
 
 const Services = require('./routes/services');
-
+const Categories = require('../portfolio/routes/categories');
 //port number
 const port = 3000;
 
@@ -40,6 +40,7 @@ app.use(bodyParser.json());
 
 
 app.use('/api/services', Services);
+app.use('/api/categories', Categories);
 
 app.get('/', (req, res) => {
 	res.send('Invalid Endpoint');

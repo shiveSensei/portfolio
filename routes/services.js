@@ -20,7 +20,8 @@ router.post('/addService', (req, res, next)=>{
 	//create new service
 	let newService = new Service({
 		name: req.body.name,
-		description: req.body.description
+		description: req.body.description,
+		category: req.body.category
 	});
 
 	//save new service to db
@@ -38,4 +39,3 @@ router.post('/addService', (req, res, next)=>{
 });
 
 module.exports = router;
-
