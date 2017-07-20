@@ -26,6 +26,8 @@ const app = express();
 
 const Services = require('./routes/services');
 const Categories = require('../portfolio/routes/categories');
+const Projects = require('../portfolio/routes/projects');
+const Users = require('../portfolio/routes/users');
 //port number
 const port = 3000;
 
@@ -41,6 +43,8 @@ app.use(bodyParser.json());
 
 app.use('/api/services', Services);
 app.use('/api/categories', Categories);
+app.use('/api/projects', Projects);
+app.use('/api/users', Users);
 
 app.get('/', (req, res) => {
 	res.send('Invalid Endpoint');

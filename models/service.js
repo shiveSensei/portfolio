@@ -36,8 +36,19 @@ module.exports.getServices = function (callback){
 
 }
 
-module.exports.getServiceById = function(id,callback){
-	Service.findById(id, callback);
+
+
+module.exports.getByCategory = function (categoryId, callback){
+	var query = {
+		'category': categoryId
+	};
+	Service.find(query, function(err, services){
+		if(err){
+			throw err;
+		}else {
+			res.json(services);
+		}
+	});
 }
 
 

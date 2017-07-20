@@ -9,8 +9,8 @@ router.get('', (req, res, next)=>{
 	Service.getServices(function(err, services){
 		if(err){
 			throw err;
-		}
-		res.json(services);
+		}else {
+		res.json(services);}
 	});
 
 });
@@ -33,6 +33,22 @@ router.post('/addService', (req, res, next)=>{
 		}
 
 	})
+
+
+
+});
+router.get('/getByCategory', (req, res, next)=>{
+
+
+
+	Service.getByCategory(function(err, category){
+		if(err){
+			throw err;
+		}else{
+			res.json(category);
+		}
+
+	});
 
 
 

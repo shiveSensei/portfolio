@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const config = require('../config/database');
 const co = require('co');
+const Schema = require('mongoose').Schema;
+const Services = require('../models/service');
 //Service Schema
 
 
@@ -15,12 +17,13 @@ const ProjectSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
-	category: {
+	client: {
 		type: String,
-		required: true
+
 	},
-	servicesRendered: {
-		type: String
+	service: {
+		type: [Schema.Types.ObjectId],
+		ref:'Services'
 	}
 });
 
@@ -29,13 +32,13 @@ const Project = module.exports = mongoose.model('Project', ProjectSchema);
 //---------------------FUNCTIONS
 
 //Get Projects
-module.exports.getServices = function (callback){
+module.exports.getProjects = function (callback){
 	Project.find(callback);
 }
-//Get Projects by category
+
 
 //Add Project to db
-module.exports.addService = function (newProduct, callback) {
-	newProduct.save(callback);
+module.exports.addProject = function (newProject, callback) {
+	newProject.save(callback);
 
 }
