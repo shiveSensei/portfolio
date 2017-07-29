@@ -1,2 +1,10 @@
 Services Offered-
 Web Dev, Photo
+
+git init
+git remote add origin <url>
+git pull origin <branch>
+git checkout <branch>
+git add .
+git commit -m "message"
+git push origin <branch>
