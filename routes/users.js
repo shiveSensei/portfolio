@@ -4,6 +4,7 @@ const config = require('../config/database');
 const Schema = require('mongoose').Schema;
 const co = require('co');
 
+
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 
@@ -42,11 +43,42 @@ router.post('/register', (req, res, next)=> {
 });
 
 
-
+//authenticate
 router.post('/authenticate',(req, res, next)=>{
+  const email = req.body.email;
+  const password = req.body.password;
+//checks if user exists
+  User.getUserByEmail(email, (err, user)=>{
+    if(err) throw err;
+    if(!user){
+      return res.json({success: false, msg: 'User not found'});
+    }
+    //if user exists compares password
+    User.comparePassword(password, user.password, (err, isMatch)=>{
+      if(err) throw err;
+      if(isMatch){
+        const token = jwt.sign(user, config.secret, {
+          expiresIn: 604800 //1 week
+        });
+        res.json({success: true,
+          token: 'JWT ' + token,
+          user: {
+            id: user._id,
+            name: user.name,
+            email: user.email
+          }
+      });
+    } else {
+      return res.json({success: false, msg: 'Wrong Password'});
+    }
+    });
+  });
 
-  res.send('Authenticate');
 
+});
+
+router.get('/profile',passport.authenticate('jwt', {session:false}), (req, res, next)=>{
+  res.json({user: req.user});
 });
 
 

@@ -4,7 +4,8 @@ const express = require('express'),
  MongoClient = require('mongodb').MongoClient,
  co = require('co'),
  bodyParser = require('body-parser'),
- cors = require('cors');
+ cors = require('cors'),
+ passport = require('passport');
 
  const config = require('./config/database');
 
@@ -39,6 +40,12 @@ app.use(cors());
 
 //Body Parser Middleware
 app.use(bodyParser.json());
+
+//passsport middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
 
 
 app.use('/api/services', Services);
